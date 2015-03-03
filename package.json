@@ -1,18 +1,18 @@
 {
-    "name": "gitbook-plugin-swibranch",
-    "description": "Plugin for GitBook to switch branches",
-    "main": "index.js",
-    "version": "0.0.2",
-    "engines": {
-        "gitbook": "*"
-    },
-    "homepage": "https://github.com/chunfuchang",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/chunfuchang/gitbook-plugin-swibranch.git"
-    },
-    "license": "Apache 2",
-    "bugs": {
-        "url": "https://github.com/chunfuchang/gitbook-plugin-swibranch/issues"
-    }
+  "name": "gitbook-plugin-swibranch",
+  "description": "Plugin for GitBook to switch branches",
+  "main": "index.js",
+  "version": "0.0.3",
+  "engines": {
+    "gitbook": "*"
+  },
+  "homepage": "https://github.com/chunfuchang",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunfuchang/gitbook-plugin-swibranch.git"
+  },
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/chunfuchang/gitbook-plugin-swibranch/issues"
+  }
 }
