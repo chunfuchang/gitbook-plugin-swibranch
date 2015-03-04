@@ -5,7 +5,7 @@ require(["gitbook"], function(gitbook) {
 
     gitbook.events.bind("start", function() {
     	var select = $("<select></select>", {
-            "id": "branchse",
+            "id": "branches",
             change: function () {
             	alert($(this).val());
             }

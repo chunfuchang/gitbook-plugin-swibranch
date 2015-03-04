@@ -1,8 +1,7 @@
 var git = require('gift');
+var select;
 var repo = git('.');
-repo.branches(function(err, heads) {
-    console.log(heads);
-})
+var sync = require('sync');
 
 module.exports = {
     // Extend ebook resources and html
@@ -42,6 +41,53 @@ module.exports = {
         // This is called after the book generation
         "finish": function() {
             console.log("gogo finish!");
+        },
+
+        page: function (page) {
+            /*var section;
+            for (var i in page.sections) {
+                section = page.sections[i];
+                if (section.type == "normal") {
+                    $ = cheerio.load(section.content);
+                    console.log($);
+                }
+            }*/
+            return page;
+        },
+
+        "page:after": function (page) {
+            /*sync(function () {
+                repo.branches.sync(null, function(err, heads) {
+                    select = '<select id="branches">';
+                    for (var i in heads) {
+                        var branch = heads[i].name;
+                        select += '<option value="' + branch + '">' + branch + '</option>';
+                        // console.log(select + '\n' + branch);
+                    }
+                    select += '</select>';
+                });
+                console.log(select);
+                page.content = page.content.replace(
+                    '<!-- Actions Right -->',
+                    select + '<!-- Actions Right -->'
+                )
+                return page;
+            });*/
+            return page;
+            /*repo.branches(function(err, heads) {
+                select = '<select id="branches">';
+                for (var i in heads) {
+                    var branch = heads[i].name;
+                    select += '<option value="' + branch + '">' + branch + '</option>';
+                    // console.log(select + '\n' + branch);
+                }
+                select += '</select>';
+            });
+            page.content = page.content.replace(
+                '<!-- Actions Right -->',
+                select + '<!-- Actions Right -->'
+            )
+            return page;*/
         }
     }
 };
