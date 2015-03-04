@@ -6,6 +6,9 @@
   "engines": {
     "gitbook": "*"
   },
+  "dependencies": {
+    "gift": "*"
+  },
   "homepage": "https://github.com/chunfuchang",
   "repository": {
     "type": "git",

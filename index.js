@@ -1,9 +1,15 @@
+var git = require('gift');
+var repo = git('.');
+repo.branches(function(err, heads) {
+    console.log(heads);
+})
+
 module.exports = {
     // Extend ebook resources and html
     book: {
         assets: "./book",
         js: [
-            "test.js"
+            "plugin.js"
         ],
         css: [
             "test.css"
@@ -24,36 +30,18 @@ module.exports = {
         }
     },
 
-    // Extend templating blocks
-    blocks: {
-        // Author will be able to write "{% myTag %}World{% endMyTag %}"
-        myTag: {
-            process: function(blk) {
-                return "Hello "+blk.body;
-            }
-        }
-    },
-
-    // Extend templating filters
-    filters: {
-        // Author will be able to write "{{ 'test'|myFilter }}"
-        myFilter: function(s) {
-            return "Hello "+s;
-        }
-    },
-
     // Hook process during build
     hooks: {
         // For all the hooks, this represent the current generator
 
         // This is called before the book is generated
         "init": function() {
-            console.log("init!");
+            console.log("gogo init!");
         },
 
         // This is called after the book generation
         "finish": function() {
-            console.log("finish!");
+            console.log("gogo finish!");
         }
     }
 };
