@@ -7,7 +7,6 @@
     "gitbook": "*"
   },
   "dependencies": {
-    "gift": "*"
   },
   "homepage": "https://github.com/chunfuchang",
   "repository": {

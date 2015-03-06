@@ -1,7 +1,6 @@
 var git = require('gift');
 var select;
-var repo = git('.');
-var sync = require('sync');
+var exec = require('child_process').execSync;
 
 module.exports = {
     // Extend ebook resources and html
@@ -44,50 +43,30 @@ module.exports = {
         },
 
         page: function (page) {
-            /*var section;
-            for (var i in page.sections) {
-                section = page.sections[i];
-                if (section.type == "normal") {
-                    $ = cheerio.load(section.content);
-                    console.log($);
-                }
-            }*/
             return page;
         },
 
         "page:after": function (page) {
-            /*sync(function () {
-                repo.branches.sync(null, function(err, heads) {
-                    select = '<select id="branches">';
-                    for (var i in heads) {
-                        var branch = heads[i].name;
-                        select += '<option value="' + branch + '">' + branch + '</option>';
-                        // console.log(select + '\n' + branch);
-                    }
-                    select += '</select>';
-                });
-                console.log(select);
-                page.content = page.content.replace(
-                    '<!-- Actions Right -->',
-                    select + '<!-- Actions Right -->'
-                )
-                return page;
-            });*/
-            return page;
-            /*repo.branches(function(err, heads) {
-                select = '<select id="branches">';
-                for (var i in heads) {
-                    var branch = heads[i].name;
+            /** system must be Unix-like and install git  **/
+            select = '<select id="branches"><option disabled selected> -- select a git branch -- </option>';
+            //get all branch from remote
+            var command = "git ls-remote | awk '{print $2}' | awk 'BEGIN {FS=\"/\"} $2==\"heads\" {print $3}'"
+            var result = exec(command).toString();
+            var branches = result.split('\n');
+            for (var i in branches) {
+                var branch = branches[i];
+                if (branch.length > 0) {
+                    branch = branch.replace('*', '').trim();
                     select += '<option value="' + branch + '">' + branch + '</option>';
-                    // console.log(select + '\n' + branch);
                 }
-                select += '</select>';
-            });
+            }
+            select += '</select>';
+            console.log(select);
             page.content = page.content.replace(
                 '<!-- Actions Right -->',
                 select + '<!-- Actions Right -->'
             )
-            return page;*/
+            return page;
         }
     }
 };
