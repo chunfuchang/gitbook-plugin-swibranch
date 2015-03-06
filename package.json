@@ -2,12 +2,11 @@
   "name": "gitbook-plugin-swibranch",
   "description": "Plugin for GitBook to switch branches",
   "main": "index.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "gitbook": "*"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "homepage": "https://github.com/chunfuchang",
   "repository": {
     "type": "git",
