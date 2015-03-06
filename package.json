@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-swibranch",
   "description": "Plugin for GitBook to switch branches",
   "main": "index.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "engines": {
     "gitbook": "*"
   },
