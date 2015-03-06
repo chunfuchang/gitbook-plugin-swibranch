@@ -47,22 +47,33 @@ module.exports = {
 
         "page:after": function (page) {
             /** system must be Unix-like and install git  **/
-            select = '<select id="branches"><option disabled selected> -- select a git branch -- </option>';
             //get all branch from remote
             var command = "git ls-remote | awk '{print $2}' | awk 'BEGIN {FS=\"/\"} $2==\"heads\" {print $3}'"
             var result = exec(command).toString();
             var branches = result.split('\n');
+            var buttons = '';
             for (var i in branches) {
                 var branch = branches[i];
                 if (branch.length > 0) {
                     branch = branch.replace('*', '').trim();
-                    select += '<option value="' + branch + '">' + branch + '</option>';
+                    buttons += '<button class="button zk-branch-plugin ' + branch + '">' + branch + '</button>';
                 }
             }
-            select += '</select>';
+            var dropdown = '<div class="dropdown pull-left">' +
+                '<a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-file-text"></i> choose branch</a>' +
+                '<div class="dropdown-menu font-settings dropdown-left">' +
+                    '<div class="dropdown-caret">' +
+                        '<span class="caret-outer"></span>' +
+                        '<span class="caret-inner"></span>' +
+                    '</div>' +
+                    '<div class="buttons">' +
+                        buttons +
+                    '</div>' +
+                '</div>' +
+            '</div>';
             page.content = page.content.replace(
                 '<!-- Actions Right -->',
-                select + '<!-- Actions Right -->'
+                dropdown + '<!-- Actions Right -->'
             )
             return page;
         }

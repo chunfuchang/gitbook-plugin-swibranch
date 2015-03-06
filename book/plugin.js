@@ -2,10 +2,8 @@ require(["gitbook"], function(gitbook) {
 	var changeBranch = function() {
 		var paths = window.location.pathname.split('/');
 		var host = window.location.host;
-		var select = $('#branches');
-		select.val(paths[2]);
-		select.change(function () {
-			paths[2] = $(this).val(); //designate branch
+		$('button.zk-branch-plugin').click(function() {
+			paths[2] = $(this).text(); //designate branch
 			var link = '';
 			paths.forEach(function(path) {
 				if (path.length > 0)
