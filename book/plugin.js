@@ -15,7 +15,6 @@ require(["gitbook"], function(gitbook) {
                     link += '/' + path;
             });
             window.location.href = window.location.protocol + '//' + window.location.host + link;
-            alert(s);
         });
     });
 });

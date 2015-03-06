@@ -1,4 +1,3 @@
-var git = require('gift');
 var select;
 var exec = require('child_process').execSync;
 
@@ -61,7 +60,6 @@ module.exports = {
                 }
             }
             select += '</select>';
-            console.log(select);
             page.content = page.content.replace(
                 '<!-- Actions Right -->',
                 select + '<!-- Actions Right -->'
