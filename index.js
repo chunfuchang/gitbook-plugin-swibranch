@@ -8,9 +8,6 @@ module.exports = {
         js: [
             "plugin.js"
         ],
-        css: [
-            "test.css"
-        ],
         html: {
             "html:start": function() {
                 return "<!-- Start book "+this.options.title+" -->"
@@ -49,7 +46,7 @@ module.exports = {
             /** system must be Unix-like and install git  **/
 
             //get current branch
-            var current = exec("git branch | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'").toString();
+            var current = exec("git branch | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'").toString();
             var invisible_div = '<div id="current-branch" style="display: none">' + current + '</div>';
 
             //get all branch from remote
