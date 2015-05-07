@@ -1,14 +1,10 @@
 require(["gitbook"], function(gitbook) {
 	var changeBranch = function() {
-		var paths = window.location.pathname.split('/');
+		var path = window.location.pathname;
 		var host = window.location.host;
+		var current_branch = $('#current-branch').text().trim();
 		$('button.zk-branch-plugin').click(function() {
-			paths[2] = $(this).text(); //designate branch
-			var link = '';
-			paths.forEach(function(path) {
-				if (path.length > 0)
-					link += '/' + path;
-			});
+			link = path.replace('/' + current_branch + '/', '/' + $(this).text() + '/');
 			window.location.href = window.location.protocol + '//' + host + link;
 		});
 	}

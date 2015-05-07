@@ -47,6 +47,11 @@ module.exports = {
 
         "page:after": function (page) {
             /** system must be Unix-like and install git  **/
+
+            //get current branch
+            var current = exec("git branch | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'").toString();
+            var invisible_div = '<div id="current-branch" style="display: none">' + current + '</div>';
+
             //get all branch from remote
             var command = "git ls-remote | awk '{print $2}' | awk 'BEGIN {FS=\"/\"} $2==\"heads\" {print $3}'"
             var result = exec(command).toString();
@@ -73,7 +78,7 @@ module.exports = {
             '</div>';
             page.content = page.content.replace(
                 '<!-- Actions Right -->',
-                dropdown + '<!-- Actions Right -->'
+                dropdown + invisible_div + '<!-- Actions Right -->'
             )
             return page;
         }
