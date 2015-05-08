@@ -56,10 +56,11 @@ module.exports = {
             var buttons = '';
             for (var i in branches) {
                 var branch = branches[i].trim();
+                var disabled = current == branch ? ' disabled' : '';
                 if (branch.length > 0) {
                     branch = branch.replace('*', '').trim();
                     buttons += '<button class="button zk-branch-plugin ' + branch + '"' + 
-                    current == branch ? ' disabled' : '' + '>' + branch + '</button>';
+                    disabled + '>' + branch + '</button>';
                 }
             }
             var dropdown = '<div class="dropdown pull-left">' +
