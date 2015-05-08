@@ -46,7 +46,7 @@ module.exports = {
             /** system must be Unix-like and install git  **/
 
             //get current branch
-            var current = exec("git branch | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'").toString();
+            var current = exec("git branch | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/\\1/'").toString().trim();
             var invisible_div = '<div id="current-branch" style="display: none">' + current + '</div>';
 
             //get all branch from remote
@@ -55,15 +55,16 @@ module.exports = {
             var branches = result.split('\n');
             var buttons = '';
             for (var i in branches) {
-                var branch = branches[i];
+                var branch = branches[i].trim();
                 if (branch.length > 0) {
                     branch = branch.replace('*', '').trim();
-                    buttons += '<button class="button zk-branch-plugin ' + branch + '">' + branch + '</button>';
+                    buttons += '<button class="button zk-branch-plugin ' + branch + '"' + 
+                    current == branch ? ' disabled' : '' + '>' + branch + '</button>';
                 }
             }
             var dropdown = '<div class="dropdown pull-left">' +
-                '<a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-file-text"></i> choose branch</a>' +
-                '<div class="dropdown-menu font-settings dropdown-left">' +
+                '<a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-file-text"></i> current: ' +
+                current + '</a><div class="dropdown-menu font-settings dropdown-left">' +
                     '<div class="dropdown-caret">' +
                         '<span class="caret-outer"></span>' +
                         '<span class="caret-inner"></span>' +
