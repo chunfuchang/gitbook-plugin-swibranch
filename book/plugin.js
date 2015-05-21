@@ -1,8 +1,22 @@
 require(["gitbook"], function(gitbook) {
-	var changeBranch = function() {
+	var tweakButton = function() {
 		var path = window.location.pathname;
 		var host = window.location.protocol + '//' + window.location.host;
 		var current_branch = $('#current-branch').text().trim();
+		//remove bad url of buttons
+		$('button.zk-branch-plugin').each(function(idx, ele) {
+			var branch = $(ele).text().trim();
+			var link = path.replace('/' + current_branch + '/', '/' + branch + '/');
+			$.ajax({
+				url: host + link,
+				success: function() {},
+				error: function() {
+					//remove button from web page
+					$(ele).remove();
+				}
+			});
+		});
+		//regist onClick event to buttons
 		$('button.zk-branch-plugin').click(function() {
 			var select_branch = $(this).text().trim();
 			if (current_branch != select_branch) {
@@ -19,10 +33,10 @@ require(["gitbook"], function(gitbook) {
 				});
 			}
 		});
-	}
-	gitbook.events.bind("page.change", changeBranch);
+	};
+	gitbook.events.bind("page.change", tweakButton);
 	gitbook.events.bind("page.change", function() {
 		$('#zk-swibranch-btn').insertAfter('#font-settings-wrapper');
 	});
-	gitbook.events.bind("start", changeBranch);
+	gitbook.events.bind("start", tweakButton);
 });
