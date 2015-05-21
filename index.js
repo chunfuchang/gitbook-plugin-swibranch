@@ -30,19 +30,13 @@ module.exports = {
 
         // This is called before the book is generated
         "init": function() {
-            console.log("gogo init!");
         },
 
         // This is called after the book generation
         "finish": function() {
-            console.log("gogo finish!");
         },
 
-        page: function (page) {
-            return page;
-        },
-
-        "page:after": function (page) {
+	page: function (page) {
             /** system must be Unix-like and install git  **/
 
             //get current branch
@@ -55,6 +49,8 @@ module.exports = {
             var branches = result.split('\n');
             var buttons = '';
             for (var i in branches) {
+		if(!(typeof branches[i] == 'string'))
+			continue;
                 var branch = branches[i].trim();
                 var disabled = current == branch ? ' disabled' : '';
                 if (branch.length > 0) {
@@ -63,7 +59,7 @@ module.exports = {
                     disabled + '>' + branch + '</button>';
                 }
             }
-            var dropdown = '<div class="dropdown pull-left">' +
+            var dropdown = '<div id="zk-swibranch-btn" class="dropdown pull-left">' +
                 '<a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-file-text"></i> current: ' +
                 current + '</a><div class="dropdown-menu font-settings dropdown-left">' +
                     '<div class="dropdown-caret">' +
@@ -75,11 +71,15 @@ module.exports = {
                     '</div>' +
                 '</div>' +
             '</div>';
-            page.content = page.content.replace(
-                '<!-- Actions Right -->',
-                dropdown + invisible_div + '<!-- Actions Right -->'
-            )
+	    page.sections
+		.filter(function(section) {
+		    return section.type == 'normal';
+		})
+	    	.forEach(function(section) {
+			section.content = dropdown + invisible_div + section.content;
+		});
+
             return page;
-        }
+	}
     }
 };

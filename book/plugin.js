@@ -22,6 +22,9 @@ require(["gitbook"], function(gitbook) {
 	}
 	
 	gitbook.events.bind("page.change", changeBranch);
+	gitbook.events.bind("page.change", function () {
+		$('#zk-swibranch-btn').insertAfter('#font-settings-wrapper');
+	});
 
 	gitbook.events.bind("start", changeBranch);
 });
