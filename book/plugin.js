@@ -8,23 +8,21 @@ require(["gitbook"], function(gitbook) {
 			if (current_branch != select_branch) {
 				var link = path.replace('/' + current_branch + '/', '/' + select_branch + '/');
 				$.ajax({
-				    url: host + link,
-				    success: function(){
-				    	window.location.href = host + link;
-				    },
-				    error: function() {
-				    	var index = link.indexOf('/' + select_branch + '/');
-				    	window.location.href = host + link.substring(0, index) + '/' + select_branch;
-				    }
+					url: host + link,
+					success: function() {
+						window.location.href = host + link;
+					},
+					error: function() {
+						var index = link.indexOf('/' + select_branch + '/');
+						window.location.href = host + link.substring(0, index) + '/' + select_branch;
+					}
 				});
 			}
 		});
 	}
-	
 	gitbook.events.bind("page.change", changeBranch);
-	gitbook.events.bind("page.change", function () {
+	gitbook.events.bind("page.change", function() {
 		$('#zk-swibranch-btn').insertAfter('#font-settings-wrapper');
 	});
-
 	gitbook.events.bind("start", changeBranch);
 });
