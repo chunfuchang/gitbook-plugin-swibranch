@@ -1,0 +1,84 @@
+body {
+	font-family: 'Open Sans';
+	font-weight: 600;
+}
+
+/* Nav styling */
+.navbar-default {
+	background-color: #ffffff;
+	height: 55px;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-default .navbar-nav>li>a {
+	color: #0c8cb5;
+}
+ .navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: #e54618;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+	color: #e54618;
+	background-color: transparent;
+}
+
+.nav>li>a {
+	padding: 17.5px 20px;
+}
+
+/* ZK logo area */
+.navbar-brand {
+	background-color: #0c8cb5;
+	height: 55px;
+	width: 67px;
+ }
+ .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+	background-color: #0c8cb5;
+}
+.navbar-brand>img {
+	vertical-align: middle;
+	border: 0;
+}
+
+/* Submenu dropdown stlying */
+.dropdown-menu>li>a {
+	color: #0c8cb5;
+	font-weight: 600;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+	color: #e54618;
+}
+.dropdown-menu .divider {
+	margin: 7px 0;
+}
+
+/* Toggle menu styling */
+.navbar-default .navbar-toggle {
+	border-color: transparent;
+}
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+	border-color: transparent;
+    background-color: transparent;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #0c8cb5;
+}
+.navbar-toggle .icon-bar {
+	width: 24px;
+	height: 3px;
+}
+.navbar-toggle .icon-bar+.icon-bar {
+	margin-top: 5px;
+}
+
+
+
+
+
+@media (max-width: 1085px) {
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
+		color: #0c8cb5;
+	}
+	.navbar-default .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+		color: #e54618;
+	}
+}
